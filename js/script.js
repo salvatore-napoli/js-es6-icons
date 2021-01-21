@@ -97,8 +97,10 @@ const icons = [
 	},
 ];
 
-const iconsContainer = document.getElementById('icons-container');
 const colors = ['blue', 'orange', 'purple'];
+const typeList = [];
+const iconsContainer = document.getElementById('icons-container');
+const filter = document.getElementById('filter');
 
 icons.forEach((element) => {
 	const {name, prefix, type, family} = element;
@@ -118,4 +120,41 @@ icons.forEach((element) => {
 		${uppercaseName}
 	</div>
 	`;
+
+	if (!typeList.includes(type)) {
+		typeList.push(type);
+	}
+});
+
+typeList.forEach ((element) => {
+	filter.innerHTML += `
+	<option value="${element}">${element}</option>
+	`
+});
+
+$('#filter').change(function () {
+	let value = $(this).val();
+	iconsContainer.innerHTML = '';
+
+	icons.forEach((element) => {
+		const {name, prefix, type, family} = element;
+		let uppercaseName = name.toUpperCase();
+		let color;
+		if (type === 'Animals') {
+			color = colors[0];
+		} else if (type === 'Fruits & Vegetables') {
+			color = colors[1];
+		} else if (type === 'People') {
+			color = colors[2];
+		}
+
+		if (type === value) {
+			iconsContainer.innerHTML += `
+			<div>
+				<i class="${family} ${prefix}${name}" style="color: ${color};"></i>
+				${uppercaseName}
+			</div>
+			`;
+		}
+	});
 });
