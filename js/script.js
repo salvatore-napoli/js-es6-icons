@@ -1,4 +1,3 @@
-// Milestone 1
 const icons = [
 	{
 		'name': 'cat',
@@ -75,41 +74,48 @@ const icons = [
 	{
 		'name': 'user-astronaut',
 		'prefix': 'fa-',
-		'type': 'Person',
+		'type': 'People',
 		'family': 'fas',
 	},
 	{
 		'name': 'user-graduate',
 		'prefix': 'fa-',
-		'type': 'Person',
+		'type': 'People',
 		'family': 'fas',
 	},
 	{
 		'name': 'user-ninja',
 		'prefix': 'fa-',
-		'type': 'Person',
+		'type': 'People',
 		'family': 'fas',
 	},
 	{
 		'name': 'user-secret',
 		'prefix': 'fa-',
-		'type': 'Person',
+		'type': 'People',
 		'family': 'fas',
 	},
 ];
 
 const iconsContainer = document.getElementById('icons-container');
+const colors = ['blue', 'orange', 'purple'];
 
 icons.forEach((element) => {
 	const {name, prefix, type, family} = element;
 	let uppercaseName = name.toUpperCase();
+	let color;
+	if (type === 'Animals') {
+		color = colors[0];
+	} else if (type === 'Fruits & Vegetables') {
+		color = colors[1];
+	} else if (type === 'People') {
+		color = colors[2];
+	}
 
 	iconsContainer.innerHTML += `
 	<div>
-		<i class="${family} ${prefix}${name}"></i>
+		<i class="${family} ${prefix}${name}" style="color: ${color};"></i>
 		${uppercaseName}
 	</div>
 	`;
 });
-
-// Milestone 2
