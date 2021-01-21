@@ -117,9 +117,11 @@ icons.forEach((element) => {
 	iconsContainer.innerHTML += `
 	<div>
 		<i class="${family} ${prefix}${name}" style="color: ${color};"></i>
-		${uppercaseName}
+		<h2>${uppercaseName}</h2>
 	</div>
 	`;
+
+	$('#icons-container div').addClass('icon-container');
 
 	if (!typeList.includes(type)) {
 		typeList.push(type);
@@ -148,13 +150,15 @@ $('#filter').change(function () {
 			color = colors[2];
 		}
 
-		if (type === value) {
+		if (type === value || value === 'All') {
 			iconsContainer.innerHTML += `
 			<div>
 				<i class="${family} ${prefix}${name}" style="color: ${color};"></i>
-				${uppercaseName}
+				<h2>${uppercaseName}</h2>
 			</div>
 			`;
 		}
 	});
+
+	$('#icons-container div').addClass('icon-container');
 });
