@@ -102,30 +102,31 @@ const typeList = [];
 const iconsContainer = document.getElementById('icons-container');
 const filter = document.getElementById('filter');
 
+
+icons.forEach((element) => {
+	const {type} = element;
+	if (!typeList.includes(type)) {
+		typeList.push(type);
+	}
+});
+
 icons.forEach((element) => {
 	const {name, prefix, type, family} = element;
-	let uppercaseName = name.toUpperCase();
+	const typeIndex = typeList.indexOf(type);
 	let color;
-	if (type === 'Animals') {
-		color = colors[0];
-	} else if (type === 'Fruits & Vegetables') {
-		color = colors[1];
-	} else if (type === 'People') {
-		color = colors[2];
+
+	if (typeIndex > -1) {
+		color = colors[typeIndex];
 	}
 
 	iconsContainer.innerHTML += `
 	<div>
 		<i class="${family} ${prefix}${name}" style="color: ${color};"></i>
-		<h2>${uppercaseName}</h2>
+		<h2>${name.toUpperCase()}</h2>
 	</div>
 	`;
 
 	$('#icons-container div').addClass('icon-container');
-
-	if (!typeList.includes(type)) {
-		typeList.push(type);
-	}
 });
 
 typeList.forEach ((element) => {
@@ -140,21 +141,18 @@ $('#filter').change(function () {
 
 	icons.forEach((element) => {
 		const {name, prefix, type, family} = element;
-		let uppercaseName = name.toUpperCase();
+		const typeIndex = typeList.indexOf(type);
 		let color;
-		if (type === 'Animals') {
-			color = colors[0];
-		} else if (type === 'Fruits & Vegetables') {
-			color = colors[1];
-		} else if (type === 'People') {
-			color = colors[2];
+
+		if (typeIndex > -1) {
+			color = colors[typeIndex];
 		}
 
 		if (type === value || value === 'All') {
 			iconsContainer.innerHTML += `
 			<div>
 				<i class="${family} ${prefix}${name}" style="color: ${color};"></i>
-				<h2>${uppercaseName}</h2>
+				<h2>${name.toUpperCase()}</h2>
 			</div>
 			`;
 		}
