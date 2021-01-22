@@ -110,25 +110,6 @@ icons.forEach((element) => {
 	}
 });
 
-icons.forEach((element) => {
-	const {name, prefix, type, family} = element;
-	const typeIndex = typeList.indexOf(type);
-	let color;
-
-	if (typeIndex > -1) {
-		color = colors[typeIndex];
-	}
-
-	iconsContainer.innerHTML += `
-	<div>
-		<i class="${family} ${prefix}${name}" style="color: ${color};"></i>
-		<h2>${name.toUpperCase()}</h2>
-	</div>
-	`;
-
-	$('#icons-container div').addClass('icon-container');
-});
-
 typeList.forEach ((element) => {
 	filter.innerHTML += `
 	<option value="${element}">${element}</option>
@@ -160,3 +141,5 @@ $('#filter').change(function () {
 
 	$('#icons-container div').addClass('icon-container');
 });
+
+$('#filter').change();
